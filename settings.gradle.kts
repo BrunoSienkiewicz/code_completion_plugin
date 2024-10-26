@@ -1,0 +1,1 @@
+rootProject.name = "code_completion_plugin"
