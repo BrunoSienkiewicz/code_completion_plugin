@@ -8,17 +8,17 @@ import org.ini4j.spi.OptionsBuilder
 
 
 
-object OllamaClient {
+object OllamaClient: LLMClient {
     private const val HOST = "http://localhost:11434"
     private const val MODEL: String = OllamaModelType.PHI
 
-    var ollamaAPI: OllamaAPI = OllamaAPI(HOST)
+    private var ollamaAPI: OllamaAPI = OllamaAPI(HOST)
 
     /**
      * Example use of OllamaAPI was found in official docs
      * https://github.com/ollama4j/ollama4j/blob/main/docs/docs/apis-generate/prompt-builder.md
      */
-    fun getCompletion(context: String): String? {
+    override fun getCompletion(context: String): String? {
         val prompt = generatePrompt(context)
         val raw = false
         val response: OllamaResult = ollamaAPI.generate(MODEL, prompt, raw, OptionsBuilder().build())
