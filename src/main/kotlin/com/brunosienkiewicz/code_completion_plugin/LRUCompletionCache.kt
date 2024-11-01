@@ -14,6 +14,9 @@ class LRUCompletionCache(config: LRUCompletionCacheConfig) : CompletionCache(con
         }
     }
 
+    /**
+     * Uses only part of the context to hash the text
+     */
     private fun getContextWindow(context: String): String {
         val lines = context.lines()
         val start = maxOf(0, lines.size - config.windowSize)
